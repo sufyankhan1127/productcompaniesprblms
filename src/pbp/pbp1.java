@@ -18,8 +18,11 @@ public class pbp1 {
 					System.out.println(m.getKey()+","+m.getValue());
 				}
 			}
-			else if(input==2) {
+			else if(input==3) {
 				updateStudent(scan, student);
+			}
+			else if(input==2) {
+				buildStudentMap(listcsv);
 			}
 			else {
 				break;
@@ -32,8 +35,9 @@ public class pbp1 {
 	public static void displayoperations() {
 		System.out.println("===STUDENT MANAGEMENT SYSTEM===");
 		System.out.println("Enter the operation you want to perform");
-		System.out.println("1.Add a Student (CSV Format inputs only)");
-		System.out.println("1.Update a Student (CSV Format inputs only)");
+		System.out.println("1.Display Students (CSV Format inputs only;{id,name,age,email,phone.course,dept,marks})");
+		System.out.println("1.Add another Student (CSV Format inputs only;{id,name,age,email,phone.course,dept,marks})");
+		System.out.println("2.Update a Student (CSV Format inputs only)");
 		System.out.println("3.Delete a Student");
 		System.out.println("4.Search a Student");
 	}
@@ -84,6 +88,8 @@ public class pbp1 {
 		return map;
 	}
 	
+	
+	
 	public static void updateStudent(Scanner scan,HashMap<Integer,Student> student) {
 		System.out.println("Enter the id to which you want to update:");
 		int updid=scan.nextInt();
@@ -101,6 +107,7 @@ public class pbp1 {
 			
 			Student st=student.get(updid);
 			if(option==1) {
+				scan.nextLine();
 				System.out.println("Enter the new Name");
 				String updname=scan.nextLine();
 				st.setName(updname);
@@ -112,6 +119,7 @@ public class pbp1 {
 				st.setAge(updage);
 			}
 			else if(option==3) {
+				scan.nextLine();
 				System.out.println("Enter the Email to be updated");
 				String updemail=scan.nextLine();
 				st.setEmail(updemail);
@@ -122,11 +130,13 @@ public class pbp1 {
 				st.setPhone(updphone);
 			}
 			else if(option==5) {
+				scan.nextLine();
 				System.out.println("Enter the course to be updated");
 				String updcourse=scan.nextLine();
 				st.setCourse(updcourse);
 			}
 			else if(option==6) {
+				scan.nextLine();
 				System.out.println("Enter the updated Dept ");
 				String upddept=scan.nextLine();
 				st.setDepartment(upddept);
@@ -140,6 +150,8 @@ public class pbp1 {
 			else {
 				System.out.println("Please enter valid option");
 			}
+			
+			System.out.println("Student Updated successfully");
 		}
 	}
 
