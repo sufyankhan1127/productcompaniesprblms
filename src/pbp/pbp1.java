@@ -1,7 +1,7 @@
 //1,arhan,22,arhan@gmail.com,88786798675,CSE,CS,678
 //2,ajith,22,ajith@gmail.com,85738927492,CSE,CS,567
 //3,arsalan,21,arsalan@gmail.com,9876567566,CSE,CS,566
-//
+
 
 package pbp;
 
@@ -214,12 +214,28 @@ public class pbp1 {
 				scan.nextLine();
 				System.out.println("Enter the Email to be updated");
 				String updemail=scan.nextLine();
-				st.setEmail(updemail);
+				
+				if(!isemailUniqueForUpd(updid, updemail, student)) {
+					System.out.println("Email is already in use by another student");
+					return;
+				}
+				else {
+					
+					st.setEmail(updemail);
+				}
 			}
 			else if(option==4) {
 				System.out.println("Enter the Updated phone number");
 				long updphone=scan.nextLong();
-				st.setPhone(updphone);
+				
+				if(!isphoneUniqueForUpd(updid, updphone, student)) {
+					System.out.println("Phone number already used by another student");
+					return;
+				}
+				else {
+					
+					st.setPhone(updphone);
+				}
 			}
 			else if(option==5) {
 				scan.nextLine();
@@ -257,6 +273,25 @@ public class pbp1 {
 		else {
 			System.out.println("Student not found ; Please enter valid id");
 		}
+	}
+	
+	public static boolean isemailUniqueForUpd(int currentid,String email,HashMap<Integer,Student> student) {
+		for(Student s:student.values()) {
+			if(s.getEmail().equalsIgnoreCase(email) && currentid!=s.getId()) {
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	
+	public static boolean isphoneUniqueForUpd(int currentid,long phone,HashMap<Integer,Student> student) {
+		for(Student s:student.values()) {
+			if(s.getPhone()==phone && currentid!=s.getId()) {
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	public static void searchStudent(Scanner scan,HashMap<Integer,Student> student) {
