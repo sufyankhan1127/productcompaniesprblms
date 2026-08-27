@@ -1,3 +1,8 @@
+//1,arhan,22,arhan@gmail.com,88786798675,CSE,CS,678
+//2,ajith,22,ajith@gmail.com,85738927492,CSE,CS,567
+//3,arsalan,21,arsalan@gmail.com,9876567566,CSE,CS,566
+
+
 package pbp;
 
 import java.util.HashMap;
@@ -18,11 +23,12 @@ public class pbp1 {
 					System.out.println(m.getKey()+","+m.getValue());
 				}
 			}
+			else if(input==2) {
+				addStudent(scan, student);
+				
+			}
 			else if(input==3) {
 				updateStudent(scan, student);
-			}
-			else if(input==2) {
-				buildStudentMap(listcsv);
 			}
 			else {
 				break;
@@ -36,8 +42,8 @@ public class pbp1 {
 		System.out.println("===STUDENT MANAGEMENT SYSTEM===");
 		System.out.println("Enter the operation you want to perform");
 		System.out.println("1.Display Students (CSV Format inputs only;{id,name,age,email,phone.course,dept,marks})");
-		System.out.println("1.Add another Student (CSV Format inputs only;{id,name,age,email,phone.course,dept,marks})");
-		System.out.println("2.Update a Student (CSV Format inputs only)");
+		System.out.println("2.Add another Student (CSV Format inputs only;{id,name,age,email,phone.course,dept,marks})");
+		System.out.println("3.Update a Student (CSV Format inputs only)");
 		System.out.println("3.Delete a Student");
 		System.out.println("4.Search a Student");
 	}
@@ -50,6 +56,7 @@ public class pbp1 {
 		scan.nextLine();
 		String[] ar=new String[noofstudent];
 		for(int i=0;i<noofstudent;i++) {
+			System.out.println("Enter id,name,age,email,phone,course,dept,marks for Student"+(i+1));
 			ar[i]=scan.nextLine();
 			
 		}
@@ -88,6 +95,33 @@ public class pbp1 {
 		return map;
 	}
 	
+	public static void addStudent(Scanner scan,HashMap<Integer,Student> student) {
+		System.out.println("Enter id,name,age,email,phone,course,dept,marks for Student");
+		scan.nextLine();
+		String str=scan.nextLine();
+		String data[]=str.split(",");
+		int id=Integer.parseInt(data[0]);
+		String name=data[1];
+		int age=Integer.parseInt(data[2]);
+		String email=data[3];
+		long phone=Long.parseLong(data[4]);
+		String course=data[5];
+		String dept=data[6];
+		int marks=Integer.parseInt(data[7]);
+		
+		Student s=new Student();
+		s.setId(id);
+		s.setName(name);
+		s.setAge(age);
+		s.setCourse(course);
+		s.setDepartment(dept);
+		s.setEmail(email);
+		s.setMarks(marks);
+		s.setPhone(phone);
+		
+		student.put(id,s);
+	}
+
 	
 	
 	public static void updateStudent(Scanner scan,HashMap<Integer,Student> student) {
