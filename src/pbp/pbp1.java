@@ -1,7 +1,7 @@
 //1,arhan,22,arhan@gmail.com,88786798675,CSE,CS,678
 //2,ajith,22,ajith@gmail.com,85738927492,CSE,CS,567
 //3,arsalan,21,arsalan@gmail.com,9876567566,CSE,CS,566
-
+//
 
 package pbp;
 
@@ -81,66 +81,7 @@ public class pbp1 {
 		
 	}
 	
-	/*
-	public static HashMap<Integer, Student> buildStudentMap(String[] listcsv) {
-		HashMap<Integer,Student> map=new HashMap();
-		for(int i=0;i<listcsv.length;i++) {
-			String[] student=listcsv[i].split(",");
-			int id=Integer.parseInt(student[0]);
-			//if id exists break;
-//			if(map.containsKey(id)) {
-//				System.out.println("id already exists ;Duplicate ids not allowed");
-//				break;
-//			}
-			
-			//if id exists update those values
-			
-			if(map.containsKey(id)){
-				Student st=map.get(id);
-				String name=student[1];
-				int age=Integer.parseInt(student[2]);
-				String email=student[3];
-				long phone=Long.parseLong(student[4]);
-				String course=student[5];
-				String dept=student[6];
-				int marks=Integer.parseInt(student[7]);
-				st.setId(id);
-				st.setAge(age);
-				st.setCourse(course);
-				st.setDepartment(dept);
-				st.setEmail(email);
-				st.setMarks(marks);
-				st.setName(name);
-				st.setPhone(phone);
-				
-				map.put(id, st);
-				
-			}
-			else {
-				Student st=new Student();
-				String name=student[1];
-				int age=Integer.parseInt(student[2]);
-				String email=student[3];
-				long phone=Long.parseLong(student[4]);
-				String course=student[5];
-				String dept=student[6];
-				int marks=Integer.parseInt(student[7]);
-				st.setId(id);
-				st.setAge(age);
-				st.setCourse(course);
-				st.setDepartment(dept);
-				st.setEmail(email);
-				st.setMarks(marks);
-				st.setName(name);
-				st.setPhone(phone);
-				
-				map.put(id, st);
-			}
-			
-		}
-		return map;
-	}*/
-	
+
 	//another method ;using constructor not setters
 	public static HashMap<Integer, Student> buildStudentMap(String[] listcsv) {
 
@@ -158,7 +99,23 @@ public class pbp1 {
 	        String course = data[5];
 	        String dept = data[6];
 	        int marks = Integer.parseInt(data[7]);
-	        
+	        // ID validation
+		    if (map.containsKey(id)) {
+		        System.out.println("Student ID already exists.");
+		        continue;
+		    }
+
+		    // Email validation
+		    if (!isEmailUnique(email, map)) {
+		        System.out.println("Email already exists.");
+		        continue;
+		    }
+
+		    // Phone validation
+		    if (!isPhoneUnique(phone, map)) {
+		        System.out.println("Phone number already exists.");
+		        continue;
+		    }
 	        Student st = new Student(
 	                id,
 	                name,
