@@ -73,33 +73,99 @@ public class pbp1 {
 		
 	}
 	
-	
+	/*
 	public static HashMap<Integer, Student> buildStudentMap(String[] listcsv) {
 		HashMap<Integer,Student> map=new HashMap();
 		for(int i=0;i<listcsv.length;i++) {
-			
 			String[] student=listcsv[i].split(",");
-			Student st=new Student();
 			int id=Integer.parseInt(student[0]);
-			String name=student[1];
-			int age=Integer.parseInt(student[2]);
-			String email=student[3];
-			long phone=Long.parseLong(student[4]);
-			String course=student[5];
-			String dept=student[6];
-			int marks=Integer.parseInt(student[7]);
-			st.setId(id);
-			st.setAge(age);
-			st.setCourse(course);
-			st.setDepartment(dept);
-			st.setEmail(email);
-			st.setMarks(marks);
-			st.setName(name);
-			st.setPhone(phone);
+			//if id exists break;
+//			if(map.containsKey(id)) {
+//				System.out.println("id already exists ;Duplicate ids not allowed");
+//				break;
+//			}
 			
-			map.put(id, st);
+			//if id exists update those values
+			
+			if(map.containsKey(id)){
+				Student st=map.get(id);
+				String name=student[1];
+				int age=Integer.parseInt(student[2]);
+				String email=student[3];
+				long phone=Long.parseLong(student[4]);
+				String course=student[5];
+				String dept=student[6];
+				int marks=Integer.parseInt(student[7]);
+				st.setId(id);
+				st.setAge(age);
+				st.setCourse(course);
+				st.setDepartment(dept);
+				st.setEmail(email);
+				st.setMarks(marks);
+				st.setName(name);
+				st.setPhone(phone);
+				
+				map.put(id, st);
+				
+			}
+			else {
+				Student st=new Student();
+				String name=student[1];
+				int age=Integer.parseInt(student[2]);
+				String email=student[3];
+				long phone=Long.parseLong(student[4]);
+				String course=student[5];
+				String dept=student[6];
+				int marks=Integer.parseInt(student[7]);
+				st.setId(id);
+				st.setAge(age);
+				st.setCourse(course);
+				st.setDepartment(dept);
+				st.setEmail(email);
+				st.setMarks(marks);
+				st.setName(name);
+				st.setPhone(phone);
+				
+				map.put(id, st);
+			}
+			
 		}
 		return map;
+	}*/
+	
+	//another method ;using constructor not setters
+	public static HashMap<Integer, Student> buildStudentMap(String[] listcsv) {
+
+	    HashMap<Integer, Student> map = new HashMap<>();
+
+	    for (int i = 0; i < listcsv.length; i++) {
+
+	        String[] data = listcsv[i].split(",");
+
+	        int id = Integer.parseInt(data[0]);
+	        String name = data[1];
+	        int age = Integer.parseInt(data[2]);
+	        String email = data[3];
+	        long phone = Long.parseLong(data[4]);
+	        String course = data[5];
+	        String dept = data[6];
+	        int marks = Integer.parseInt(data[7]);
+
+	        Student st = new Student(
+	                id,
+	                name,
+	                age,
+	                email,
+	                phone,
+	                course,
+	                dept,
+	                marks
+	        );
+
+	        map.put(id, st);
+	    }
+
+	    return map;
 	}
 	
 	public static void addStudent(Scanner scan,HashMap<Integer,Student> student) {
@@ -116,17 +182,18 @@ public class pbp1 {
 		String dept=data[6];
 		int marks=Integer.parseInt(data[7]);
 		
-		Student s=new Student();
-		s.setId(id);
-		s.setName(name);
-		s.setAge(age);
-		s.setCourse(course);
-		s.setDepartment(dept);
-		s.setEmail(email);
-		s.setMarks(marks);
-		s.setPhone(phone);
+		Student st = new Student(
+                id,
+                name,
+                age,
+                email,
+                phone,
+                course,
+                dept,
+                marks
+        );
 		
-		student.put(id,s);
+		student.put(id,st);
 	}
 
 	
@@ -217,6 +284,64 @@ public class pbp1 {
 		else {
 			System.out.println("User Doesnot exist");
 		}
+	}
+	
+	public static void searchByEmail(Scanner scan,HashMap<Integer,Student> student) {
+		scan.nextLine();
+		System.out.println("Enter the email of  the student");
+		String searchemail=scan.nextLine();
+		
+		for(Student s:student.values()) {
+			if(s.getEmail().equalsIgnoreCase(searchemail)) {
+				System.out.println(s);
+				return;
+			}
+		}
+		
+		System.out.println("Student not Found");
+	}
+	
+	public static boolean isEmailUnique(
+	        String email,
+	        HashMap<Integer, Student> students) {
+
+	    for (Student s : students.values()) {
+
+	        if (s.getEmail().equalsIgnoreCase(email)) {
+	            return false;
+	        }
+	    }
+
+	    return true;
+	}
+	
+	public static boolean isPhoneUnique(
+	        long phone,
+	        HashMap<Integer, Student> students) {
+
+	    for (Student s : students.values()) {
+
+	        if (s.getPhone() == phone) {
+	            return false;
+	        }
+	    }
+
+	    return true;
+	}
+	
+	public static void searchByPhone(Scanner scan,HashMap<Integer,Student> student) {
+		scan.nextLine();
+		System.out.println("Enter the phone no to find student");
+		long searchphone=scan.nextLong();
+		
+		for(Student s:student.values()) {
+			if(s.getPhone()==searchphone) {
+				System.out.println(s);
+				return;
+			}
+		}
+		
+		System.out.println("Student not found");
 	}
 
 }
