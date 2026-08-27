@@ -36,6 +36,12 @@ public class pbp1 {
 			else if(input==5) {
 				searchStudent(scan,student);
 			}
+			else if(input==6) {
+				searchByEmail(scan, student);
+			}
+			else if(input==7) {
+				searchByPhone(scan, student);
+			}
 			else {
 				break;
 			}
@@ -49,9 +55,11 @@ public class pbp1 {
 		System.out.println("Enter the operation you want to perform");
 		System.out.println("1.Display Students (CSV Format inputs only;{id,name,age,email,phone.course,dept,marks})");
 		System.out.println("2.Add another Student (CSV Format inputs only;{id,name,age,email,phone.course,dept,marks})");
-		System.out.println("3.Update a Student (CSV Format inputs only)");
+		System.out.println("3.Update a Student");
 		System.out.println("4.Delete a Student");
-		System.out.println("5.Search a Student");
+		System.out.println("5.Search a Student by Id");
+		System.out.println("6.Search a Student by email");
+		System.out.println("7.Search a Student by Phone");
 		System.out.println("== Enter any other number to end program ==");
 	}
 	
@@ -150,7 +158,7 @@ public class pbp1 {
 	        String course = data[5];
 	        String dept = data[6];
 	        int marks = Integer.parseInt(data[7]);
-
+	        
 	        Student st = new Student(
 	                id,
 	                name,
@@ -161,6 +169,7 @@ public class pbp1 {
 	                dept,
 	                marks
 	        );
+	        
 
 	        map.put(id, st);
 	    }
@@ -181,6 +190,24 @@ public class pbp1 {
 		String course=data[5];
 		String dept=data[6];
 		int marks=Integer.parseInt(data[7]);
+		
+		 // ID validation
+	    if (student.containsKey(id)) {
+	        System.out.println("Student ID already exists.");
+	        return;
+	    }
+
+	    // Email validation
+	    if (!isEmailUnique(email, student)) {
+	        System.out.println("Email already exists.");
+	        return;
+	    }
+
+	    // Phone validation
+	    if (!isPhoneUnique(phone, student)) {
+	        System.out.println("Phone number already exists.");
+	        return;
+	    }
 		
 		Student st = new Student(
                 id,
