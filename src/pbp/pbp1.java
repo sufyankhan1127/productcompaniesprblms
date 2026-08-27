@@ -30,6 +30,12 @@ public class pbp1 {
 			else if(input==3) {
 				updateStudent(scan, student);
 			}
+			else if(input==4) {
+				deleteStudent(scan, student);
+			}
+			else if(input==5) {
+				searchStudent(scan,student);
+			}
 			else {
 				break;
 			}
@@ -44,8 +50,9 @@ public class pbp1 {
 		System.out.println("1.Display Students (CSV Format inputs only;{id,name,age,email,phone.course,dept,marks})");
 		System.out.println("2.Add another Student (CSV Format inputs only;{id,name,age,email,phone.course,dept,marks})");
 		System.out.println("3.Update a Student (CSV Format inputs only)");
-		System.out.println("3.Delete a Student");
-		System.out.println("4.Search a Student");
+		System.out.println("4.Delete a Student");
+		System.out.println("5.Search a Student");
+		System.out.println("== Enter any other number to end program ==");
 	}
 	
 	public static String[]  takeinput(Scanner scan) {
@@ -186,6 +193,29 @@ public class pbp1 {
 			}
 			
 			System.out.println("Student Updated successfully");
+		}
+	}
+	
+	public static void deleteStudent(Scanner scan,HashMap<Integer,Student> student) {
+		System.out.println("Enter the id for deletion:");
+		int delid=scan.nextInt();
+		if(student.containsKey(delid)) {
+			student.remove(delid);
+			System.out.println("Student removed ");
+		}
+		else {
+			System.out.println("Student not found ; Please enter valid id");
+		}
+	}
+	
+	public static void searchStudent(Scanner scan,HashMap<Integer,Student> student) {
+		System.out.println("Enter the id for search:");
+		int searchid=scan.nextInt();
+		if(student.containsKey(searchid)) {
+			System.out.println(searchid+","+student.get(searchid));
+		}
+		else {
+			System.out.println("User Doesnot exist");
 		}
 	}
 
