@@ -1,6 +1,3 @@
-//1,arhan,22,arhan@gmail.com,88786798675,CSE,CS,678
-//2,ajith,22,ajith@gmail.com,85738927492,CSE,CS,567
-//3,arsalan,21,arsalan@gmail.com,9876567566,CSE,CS,566
 
 
 package pbp;
@@ -60,6 +57,9 @@ public class pbp1 {
 		System.out.println("5.Search a Student by Id");
 		System.out.println("6.Search a Student by email");
 		System.out.println("7.Search a Student by Phone");
+		System.out.println("8.Sort the students based on max marks");
+		System.out.println("9.Sort the students based on name of the student");
+		System.out.println("10.Sort the students based on email");
 		System.out.println("== Enter any other number to end program ==");
 	}
 	
