@@ -440,7 +440,7 @@ class Student{
 	}
 	@Override
 	public String toString() {
-		return "Student [id=" + id + ", name=" + name + ", age=" + age + ", email=" + email + ", phone=" + phone
+		return "Student "+", name=" + name + ", age=" + age + ", email=" + email + ", phone=" + phone
 				+ ", course=" + course + ", department=" + department + ", marks=" + marks + "]";
 	}
 	
