@@ -97,12 +97,25 @@ public class pbp1 {
 					System.out.println(s);
 				}
 			}
-			else if(input==9) {
+			else if(input==10) {
 				ArrayList<Student> sortedemail=sortOnEmail(student,scan);
 				for(Student s:sortedemail) {
 					System.out.println(s);
 				}
 			}
+			else if(input==9) {
+				ArrayList<Student> sortedname=sortOnName(student,scan);
+				for(Student s:sortedname) {
+					System.out.println(s);
+				}
+			}
+			else if(input==11) {
+				ArrayList<Student> sortedage=sortOnAge(student,scan);
+				for(Student s:sortedage) {
+					System.out.println(s);
+				}
+			}
+			
 			else {
 				break;
 			}
@@ -124,6 +137,7 @@ public class pbp1 {
 		System.out.println("8.Sort the students based on max marks");
 		System.out.println("9.Sort the students based on name of the student");
 		System.out.println("10.Sort the students based on email");
+		System.out.println("11.Sort the students based on Age");
 		System.out.println("== Enter any other number to end program ==");
 	}
 	
@@ -458,6 +472,40 @@ public class pbp1 {
 		}
 		return list;
 	}
+	
+	public static ArrayList<Student> sortOnName(HashMap<Integer,Student> student,Scanner scan){
+		ArrayList<Student> list=new ArrayList();
+		for(Map.Entry<Integer, Student> s:student.entrySet()) {
+			list.add(s.getValue());
+			
+			Collections.sort(list,new Comparator<Student>(){
+				public int compare(Student s1,Student s2) {
+					return s1.getName().compareTo(s2.getName());
+				}
+			});
+		}
+		return list;
+	}
+	
+	public static ArrayList<Student> sortOnAge(HashMap<Integer,Student> student,Scanner scan){
+		ArrayList<Student> list=new ArrayList();
+		for(Map.Entry<Integer, Student> s:student.entrySet()) {
+			list.add(s.getValue());
+			
+			Collections.sort(list,new Comparator<Student>(){
+				public int compare(Student s1,Student s2) {
+					if(s1.getAge()==s2.getAge()) {
+						return Integer.compare(s1.getAge(), s2.getAge());
+					}
+					
+					return Integer.compare(s2.getAge(), s1.getAge());
+				}
+			});
+		}
+		return list;
+	}
+	
+	
 
 }
 
