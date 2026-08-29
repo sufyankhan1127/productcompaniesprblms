@@ -461,14 +461,39 @@ public class pbp1 {
 	
 	public static ArrayList<Student> sortOnEmail(HashMap<Integer,Student> student,Scanner scan){
 		ArrayList<Student> list=new ArrayList();
-		for(Map.Entry<Integer, Student> s:student.entrySet()) {
-			list.add(s.getValue());
+		System.out.println("Enter the order of sorting :");
+		System.out.println("1.Ascending");
+		System.out.println("2.Descending");
+		
+		int order=scan.nextInt();
+		if(order==1) 
+		{
 			
-			Collections.sort(list,new Comparator<Student>(){
-				public int compare(Student s1,Student s2) {
-					return s1.getEmail().compareTo(s2.getEmail());
-				}
-			});
+			for(Map.Entry<Integer, Student> s:student.entrySet()) {
+				list.add(s.getValue());
+				
+				Collections.sort(list,new Comparator<Student>(){
+					public int compare(Student s1,Student s2) {
+						return s1.getEmail().compareTo(s2.getEmail());
+					}
+				});
+			}
+			return list;
+		}
+		else if(order==2) {
+			for(Map.Entry<Integer, Student> s:student.entrySet()) {
+				list.add(s.getValue());
+				
+				Collections.sort(list,new Comparator<Student>(){
+					public int compare(Student s1,Student s2) {
+						return s2.getEmail().compareTo(s1.getEmail());
+					}
+				});
+			}
+			return list;
+		}
+		else {
+			System.out.println("Invalid option");
 		}
 		return list;
 	}
