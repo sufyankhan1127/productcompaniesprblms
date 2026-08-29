@@ -115,6 +115,12 @@ public class pbp1 {
 					System.out.println(s);
 				}
 			}
+			else if(input==12) {
+				ArrayList<Student> Topk=topKstudents(student,scan);
+				for(Student s:Topk) {
+					System.out.println(s);
+				}
+			}
 			
 			else {
 				break;
@@ -138,6 +144,7 @@ public class pbp1 {
 		System.out.println("9.Sort the students based on name of the student");
 		System.out.println("10.Sort the students based on email");
 		System.out.println("11.Sort the students based on Age");
+		System.out.println("12.Top K students with max Marks");
 		System.out.println("== Enter any other number to end program ==");
 	}
 	
@@ -607,6 +614,34 @@ public class pbp1 {
 		}
 		
 		return list;
+	}
+	
+	public static ArrayList<Student> topKstudents(HashMap<Integer, Student> student , Scanner scan){
+		ArrayList<Student> list=new ArrayList<Student>();
+		
+		System.out.println("Enter the k value: ");
+		int k=scan.nextInt();
+		for(Map.Entry<Integer,Student> s:student.entrySet()) {
+			list.add(s.getValue());
+			
+			Collections.sort(list,new Comparator<Student>(){
+				public int compare(Student s1,Student s2) {
+					if(s1.getMarks()==s2.getMarks()) {
+						return Integer.compare(s1.getMarks(), s2.getMarks());
+					}
+					
+					return Integer.compare(s2.getMarks(), s1.getMarks());
+				}
+			});
+		}
+		
+		ArrayList<Student> newlist=new ArrayList<Student>();
+		for(int i=0;i<k && i<list.size();i++) {
+			newlist.add(list.get(i));
+		}
+		
+		return newlist;
+		
 	}
 	
 	
