@@ -443,19 +443,48 @@ public class pbp1 {
 	
 	public static ArrayList<Student> sortOnMarks(HashMap<Integer,Student> student,Scanner scan){
 		ArrayList<Student> list=new ArrayList();
-		for(Map.Entry<Integer, Student> st:student.entrySet()) {
-			list.add(st.getValue());
-		}
+		System.out.println("Enter the order of sorting :");
+		System.out.println("1.Ascending");
+		System.out.println("2.Descending");
 		
-		Collections.sort(list,new Comparator<Student>() {
-			public int compare(Student s1,Student s2) {
-				if(s1.getMarks()==s2.getMarks()) {
+		int order=scan.nextInt();
+		
+		if(order==1) {
+			
+			for(Map.Entry<Integer, Student> st:student.entrySet()) {
+				list.add(st.getValue());
+			}
+			
+			Collections.sort(list,new Comparator<Student>() {
+				public int compare(Student s1,Student s2) {
+					if(s1.getMarks()==s2.getMarks()) {
+						return Integer.compare(s1.getMarks(), s2.getMarks());
+					}
 					return Integer.compare(s1.getMarks(), s2.getMarks());
 				}
-				return Integer.compare(s1.getMarks(), s2.getMarks());
+			});
+			
+			return list;
+		}
+		else if(order==2) {
+			for(Map.Entry<Integer, Student> st:student.entrySet()) {
+				list.add(st.getValue());
 			}
-		});
-		
+			
+			Collections.sort(list,new Comparator<Student>() {
+				public int compare(Student s1,Student s2) {
+					if(s1.getMarks()==s2.getMarks()) {
+						return Integer.compare(s2.getMarks(), s1.getMarks());
+					}
+					return Integer.compare(s2.getMarks(), s1.getMarks());
+				}
+			});
+			
+			return list;
+		}
+		else {
+			System.out.println("Invalid option");
+		}
 		return list;
 	}
 	
@@ -500,33 +529,83 @@ public class pbp1 {
 	
 	public static ArrayList<Student> sortOnName(HashMap<Integer,Student> student,Scanner scan){
 		ArrayList<Student> list=new ArrayList();
-		for(Map.Entry<Integer, Student> s:student.entrySet()) {
-			list.add(s.getValue());
-			
-			Collections.sort(list,new Comparator<Student>(){
-				public int compare(Student s1,Student s2) {
-					return s1.getName().compareTo(s2.getName());
-				}
-			});
+		System.out.println("Enter the order of sorting :");
+		System.out.println("1.Ascending");
+		System.out.println("2.Descending");
+		
+		int order=scan.nextInt();
+		if(order==1) 
+		{
+			for(Map.Entry<Integer, Student> s:student.entrySet()) {
+				list.add(s.getValue());
+				
+				Collections.sort(list,new Comparator<Student>(){
+					public int compare(Student s1,Student s2) {
+						return s1.getName().compareTo(s2.getName());
+					}
+				});
+			}
+			return list;
+		}
+		else if(order==2) {
+			for(Map.Entry<Integer, Student> s:student.entrySet()) {
+				list.add(s.getValue());
+				
+				Collections.sort(list,new Comparator<Student>(){
+					public int compare(Student s1,Student s2) {
+						return s2.getName().compareTo(s1.getName());
+					}
+				});
+			}
+			return list;
+		}
+		else {
+			System.out.println("Invalid Option");
 		}
 		return list;
+		
 	}
 	
 	public static ArrayList<Student> sortOnAge(HashMap<Integer,Student> student,Scanner scan){
 		ArrayList<Student> list=new ArrayList();
-		for(Map.Entry<Integer, Student> s:student.entrySet()) {
-			list.add(s.getValue());
-			
-			Collections.sort(list,new Comparator<Student>(){
-				public int compare(Student s1,Student s2) {
-					if(s1.getAge()==s2.getAge()) {
+		System.out.println("Enter the order of sorting :");
+		System.out.println("1.Ascending");
+		System.out.println("2.Descending");
+		int order=scan.nextInt();
+		if(order==1) {
+			for(Map.Entry<Integer, Student> s:student.entrySet()) {
+				list.add(s.getValue());
+				
+				Collections.sort(list,new Comparator<Student>(){
+					public int compare(Student s1,Student s2) {
+						if(s1.getAge()==s2.getAge()) {
+							return Integer.compare(s2.getAge(), s1.getAge());
+						}
+						
+						return Integer.compare(s1.getAge(), s2.getAge());
+					}
+				});
+			}
+		}
+		else if(order==2) {
+			for(Map.Entry<Integer, Student> s:student.entrySet()) {
+				list.add(s.getValue());
+				
+				Collections.sort(list,new Comparator<Student>(){
+					public int compare(Student s1,Student s2) {
+						if(s1.getAge()==s2.getAge()) {
+							return Integer.compare(s1.getAge(), s2.getAge());
+						}
+						
 						return Integer.compare(s2.getAge(), s1.getAge());
 					}
-					
-					return Integer.compare(s1.getAge(), s2.getAge());
-				}
-			});
+				});
+			}
 		}
+		else {
+			System.out.println("Invalid option");
+		}
+		
 		return list;
 	}
 	
