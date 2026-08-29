@@ -495,10 +495,10 @@ public class pbp1 {
 			Collections.sort(list,new Comparator<Student>(){
 				public int compare(Student s1,Student s2) {
 					if(s1.getAge()==s2.getAge()) {
-						return Integer.compare(s1.getAge(), s2.getAge());
+						return Integer.compare(s2.getAge(), s1.getAge());
 					}
 					
-					return Integer.compare(s2.getAge(), s1.getAge());
+					return Integer.compare(s1.getAge(), s2.getAge());
 				}
 			});
 		}
