@@ -127,6 +127,12 @@ public class pbp1 {
 					System.out.println(s);
 				}
 			}
+			else if(input==14) {
+				ArrayList<Student> marks=searchByMarks(student, scan);
+				for(Student s:marks) {
+					System.out.println(s);
+				}
+			}
 			
 			else {
 				break;
@@ -152,6 +158,7 @@ public class pbp1 {
 		System.out.println("11.Sort the students based on Age");
 		System.out.println("12.Top K students with max Marks");
 		System.out.println("13.Get all students by particular Course name");
+		System.out.println("14.Get all students whose marks is greater than N");
 		System.out.println("== Enter any other number to end program ==");
 	}
 	
@@ -552,6 +559,25 @@ public class pbp1 {
 		
 		return list1;
 	}
+	
+	public static ArrayList<Student> searchByMarks(HashMap<Integer,Student> student,Scanner scan){
+		ArrayList<Student> list=new ArrayList();
+		ArrayList<Student> list1=new ArrayList();
+		scan.nextLine();
+		System.out.println("Enter the marks to display equal or greater than that marks");
+		int marks=scan.nextInt();
+		for(Map.Entry<Integer, Student> s:student.entrySet()) {
+			list.add(s.getValue());
+		}
+		
+		for(Student s:list) {
+			if(s.getMarks()>=marks) {
+				list1.add(s);
+			}
+		}
+		
+		return list1;
+	}
 	public static ArrayList<Student> sortOnEmail(HashMap<Integer,Student> student,Scanner scan){
 		ArrayList<Student> list=new ArrayList();
 		System.out.println("Enter the order of sorting :");
@@ -700,6 +726,7 @@ public class pbp1 {
 		return newlist;
 		
 	}
+	
 	
 	
 
