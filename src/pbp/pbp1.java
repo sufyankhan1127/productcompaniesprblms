@@ -121,6 +121,12 @@ public class pbp1 {
 					System.out.println(s);
 				}
 			}
+			else if(input==13) {
+				ArrayList<Student> course=searchByCourse(student, scan);
+				for(Student s:course) {
+					System.out.println(s);
+				}
+			}
 			
 			else {
 				break;
@@ -145,6 +151,7 @@ public class pbp1 {
 		System.out.println("10.Sort the students based on email");
 		System.out.println("11.Sort the students based on Age");
 		System.out.println("12.Top K students with max Marks");
+		System.out.println("13.Get all students by particular Course name");
 		System.out.println("== Enter any other number to end program ==");
 	}
 	
@@ -270,7 +277,7 @@ public class pbp1 {
 	public static void updateStudent(Scanner scan,HashMap<Integer,Student> student) {
 		System.out.println("Enter the id to which you want to update:");
 		int updid=scan.nextInt();
-		
+		boolean updated=false;
 		if(student.containsKey(updid)) {
 			System.out.println("Select what you want to update");
 			System.out.println("1.Name");
@@ -289,6 +296,7 @@ public class pbp1 {
 				System.out.println("Enter the new Name");
 				String updname=scan.nextLine();
 				st.setName(updname);
+				updated=true;
 			}
 			
 			else if(option==2) {
@@ -301,6 +309,7 @@ public class pbp1 {
 				else {
 					
 					st.setAge(updage);
+					updated=true;
 				}
 			}
 			else if(option==3) {
@@ -315,6 +324,7 @@ public class pbp1 {
 				else {
 					
 					st.setEmail(updemail);
+					updated=true;
 				}
 			}
 			else if(option==4) {
@@ -328,6 +338,7 @@ public class pbp1 {
 				else {
 					
 					st.setPhone(updphone);
+					updated=true;
 				}
 			}
 			else if(option==5) {
@@ -335,12 +346,14 @@ public class pbp1 {
 				System.out.println("Enter the course to be updated");
 				String updcourse=scan.nextLine();
 				st.setCourse(updcourse);
+				updated=true;
 			}
 			else if(option==6) {
 				scan.nextLine();
 				System.out.println("Enter the updated Dept ");
 				String upddept=scan.nextLine();
 				st.setDepartment(upddept);
+				updated=true;
 			}
 			else if(option==7) {
 				System.out.println("Enter the marks that need to be updated");
@@ -352,11 +365,12 @@ public class pbp1 {
 				else {
 					
 					st.setMarks(updmarks);
+					updated=true;
 				}
 				
 			}
 			
-			boolean updated=false;
+			
 			if(updated) {
 				
 				System.out.println("Student Updated successfully");
@@ -519,6 +533,25 @@ public class pbp1 {
 		return list;
 	}
 	
+	
+	public static ArrayList<Student> searchByCourse(HashMap<Integer,Student> student,Scanner scan){
+		ArrayList<Student> list=new ArrayList();
+		ArrayList<Student> list1=new ArrayList();
+		scan.nextLine();
+		System.out.println("Enter the course name:");
+		String course=scan.nextLine();
+		for(Map.Entry<Integer, Student> s:student.entrySet()) {
+			list.add(s.getValue());
+		}
+		
+		for(Student s:list) {
+			if(s.getCourse().equalsIgnoreCase(course)) {
+				list1.add(s);
+			}
+		}
+		
+		return list1;
+	}
 	public static ArrayList<Student> sortOnEmail(HashMap<Integer,Student> student,Scanner scan){
 		ArrayList<Student> list=new ArrayList();
 		System.out.println("Enter the order of sorting :");
