@@ -300,7 +300,7 @@ public class pbp1 {
 				System.out.println("Enter the Email to be updated");
 				String updemail=scan.nextLine();
 				
-				if(!isemailUniqueForUpd(updid, updemail, student)) {
+				if(!isEmailUniqueForUpdate(updid, updemail, student)) {
 					System.out.println("Email is already in use by another student");
 					return;
 				}
@@ -313,7 +313,7 @@ public class pbp1 {
 				System.out.println("Enter the Updated phone number");
 				long updphone=scan.nextLong();
 				
-				if(!isphoneUniqueForUpd(updid, updphone, student)) {
+				if(!isPhoneUniqueForUpdate(updid, updphone, student)) {
 					System.out.println("Phone number already used by another student");
 					return;
 				}
@@ -360,7 +360,7 @@ public class pbp1 {
 		}
 	}
 	
-	public static boolean isemailUniqueForUpd(int currentid,String email,HashMap<Integer,Student> student) {
+	public static boolean isEmailUniqueForUpdate(int currentid,String email,HashMap<Integer,Student> student) {
 		for(Student s:student.values()) {
 			if(s.getEmail().equalsIgnoreCase(email) && currentid!=s.getId()) {
 				return false;
@@ -370,7 +370,8 @@ public class pbp1 {
 		return true;
 	}
 	
-	public static boolean isphoneUniqueForUpd(int currentid,long phone,HashMap<Integer,Student> student) {
+
+	public static boolean isPhoneUniqueForUpdate(int currentid,long phone,HashMap<Integer,Student> student) {
 		for(Student s:student.values()) {
 			if(s.getPhone()==phone && currentid!=s.getId()) {
 				return false;
