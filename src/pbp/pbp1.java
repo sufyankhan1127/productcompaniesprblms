@@ -270,6 +270,7 @@ public class pbp1 {
 	public static void updateStudent(Scanner scan,HashMap<Integer,Student> student) {
 		System.out.println("Enter the id to which you want to update:");
 		int updid=scan.nextInt();
+		
 		if(student.containsKey(updid)) {
 			System.out.println("Select what you want to update");
 			System.out.println("1.Name");
@@ -293,7 +294,14 @@ public class pbp1 {
 			else if(option==2) {
 				System.out.println("Enter the Age to be updated");
 				int updage=scan.nextInt();
-				st.setAge(updage);
+				if(updage<17 || updage>30) {
+					System.out.println("Please enter valid age");
+					return;
+				}
+				else {
+					
+					st.setAge(updage);
+				}
 			}
 			else if(option==3) {
 				scan.nextLine();
@@ -337,14 +345,29 @@ public class pbp1 {
 			else if(option==7) {
 				System.out.println("Enter the marks that need to be updated");
 				int updmarks=scan.nextInt();
-				st.setMarks(updmarks);
+				if(updmarks<0) {
+					System.out.println("Enter Valid Marks");
+					return;
+				}
+				else {
+					
+					st.setMarks(updmarks);
+				}
 				
+			}
+			
+			boolean updated=false;
+			if(updated) {
+				
+				System.out.println("Student Updated successfully");
 			}
 			else {
 				System.out.println("Please enter valid option");
 			}
 			
-			System.out.println("Student Updated successfully");
+		}
+		else {
+			System.out.println("Student not found");
 		}
 	}
 	
