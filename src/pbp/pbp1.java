@@ -57,6 +57,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 public class pbp1 {
 	public static void main(String[] args) {
@@ -133,6 +134,9 @@ public class pbp1 {
 					System.out.println(s);
 				}
 			}
+			else if(input==15) {
+				HighestandLowest(student);
+			}
 			
 			else {
 				break;
@@ -159,6 +163,7 @@ public class pbp1 {
 		System.out.println("12.Top K students with max Marks");
 		System.out.println("13.Get all students by particular Course name");
 		System.out.println("14.Get all students whose marks is greater than N");
+		System.out.println("15. Get Highest and Lowest in student list");
 		System.out.println("== Enter any other number to end program ==");
 	}
 	
@@ -615,6 +620,30 @@ public class pbp1 {
 			System.out.println("Invalid option");
 		}
 		return list;
+	}
+	
+	public static void HighestandLowest(HashMap<Integer,Student> student) {
+		Student highest=null;
+		Student lowest=null;
+		
+		if(student.isEmpty()) {
+			System.out.println("No Student data found");
+		}
+		for(Student s:student.values()) {
+			if(highest==null ||s.getMarks()>highest.getMarks()) {
+				highest=s;
+			}
+		}
+		for(Student s:student.values()) {
+			if(lowest==null ||s.getMarks()<lowest.getMarks()) {
+				lowest=s;
+			}
+		}
+		
+		System.out.println("Student with Highest Marks:");
+		System.out.println(highest);
+		System.out.println("Student with Lowest Marks:");
+		System.out.println(lowest);
 	}
 	
 	public static ArrayList<Student> sortOnName(HashMap<Integer,Student> student,Scanner scan){
