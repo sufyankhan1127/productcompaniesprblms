@@ -137,6 +137,10 @@ public class pbp1 {
 			else if(input==15) {
 				HighestandLowest(student);
 			}
+			else if(input==16) {
+				int result=countByCourse(student, scan);
+				System.out.println("Students in this course="+result);
+			}
 			
 			else {
 				break;
@@ -164,6 +168,7 @@ public class pbp1 {
 		System.out.println("13.Get all students by particular Course name");
 		System.out.println("14.Get all students whose marks is greater than N");
 		System.out.println("15. Get Highest and Lowest in student list");
+		System.out.println("16.Count the students in particular course");
 		System.out.println("== Enter any other number to end program ==");
 	}
 	
@@ -563,6 +568,26 @@ public class pbp1 {
 		}
 		
 		return list1;
+	}
+	
+	public static int countByCourse(HashMap<Integer,Student> student,Scanner scan) {
+		scan.nextLine();
+		System.out.println("Enter the Course Name:");
+		String course=scan.nextLine();
+		
+		ArrayList<Student> list=new ArrayList();
+		int count=0;
+		for(Map.Entry<Integer, Student> s:student.entrySet()) {
+			list.add(s.getValue());
+		}
+		
+		for(Student s:list) {
+			if(s.getCourse().equalsIgnoreCase(course)) {
+				count++;
+			}
+		}
+		
+		return count;
 	}
 	
 	public static ArrayList<Student> searchByMarks(HashMap<Integer,Student> student,Scanner scan){
