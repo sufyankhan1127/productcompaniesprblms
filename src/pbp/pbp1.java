@@ -167,7 +167,7 @@ public class pbp1 {
 		System.out.println("12.Top K students with max Marks");
 		System.out.println("13.Get all students by particular Course name");
 		System.out.println("14.Get all students whose marks is greater than N");
-		System.out.println("15. Get Highest and Lowest in student list");
+		System.out.println("15.Get Highest and Lowest in student list");
 		System.out.println("16.Count the students in particular course");
 		System.out.println("== Enter any other number to end program ==");
 	}
