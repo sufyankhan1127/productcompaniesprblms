@@ -145,8 +145,6 @@ public class pbp1 {
 			else {
 				break;
 			}
-				
-			
 		}
 	}
 	
